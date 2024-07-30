@@ -31,8 +31,10 @@ wss.on('connection', (ws) => {
     // Save stats when a new connection is made
     saveStats();
 
+    // Send current stats to the new client
     ws.send(JSON.stringify({ type: 'stats', currentConnections, totalConnections }));
 
+    // Broadcast current connections to all clients
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
             client.send(JSON.stringify({ type: 'currentConnections', currentConnections }));
@@ -40,6 +42,7 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('message', (message) => {
+        // Broadcast the message to all clients
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(JSON.stringify({ type: 'message', text: message }));
