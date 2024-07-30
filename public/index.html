@@ -20,8 +20,8 @@
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://tlnscxtyjdzmmiocoyjk.supabase.co'; // Supabase URL
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsbnNjeHR5amR6bW1pb2NveWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIzNDY1NjgsImV4cCI6MjAzNzkyMjU2OH0.XhpZwYI1Piq8TtU4uwIdY8MbDIQ177DCei8aHP3A5mU';
+        const SUPABASE_URL = 'your-supabase-url'; // Supabase URL
+        const SUPABASE_KEY = 'your-supabase-key'; // Supabase anon key
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const chat = document.getElementById('chat');
@@ -34,8 +34,11 @@
                 .select('*')
                 .order('inserted_at', { ascending: true });
 
-            if (error) console.error('Error fetching messages:', error);
-            else data.forEach(displayMessage);
+            if (error) {
+                console.error('Error fetching messages:', error);
+            } else {
+                data.forEach(displayMessage);
+            }
         }
 
         function displayMessage(message) {
@@ -53,15 +56,20 @@
 
         messageInput.addEventListener('keypress', async (event) => {
             if (event.key === 'Enter' && messageInput.value.trim() !== '') {
-                const username = 'User'; 
+                const username = 'User'; // You can replace this with a dynamic username
                 const content = messageInput.value;
+
+                console.log(`Sending message: ${content}`); // Debugging message
 
                 const { error } = await supabase
                     .from('messages')
                     .insert([{ username, content }]);
 
-                if (error) console.error('Error inserting message:', error);
-                else messageInput.value = '';
+                if (error) {
+                    console.error('Error inserting message:', error);
+                } else {
+                    messageInput.value = '';
+                }
             }
         });
 
