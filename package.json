@@ -1,13 +1,12 @@
 {
-  "name": "realtime-chat",
+  "name": "realtime-chat-supabase",
   "version": "1.0.0",
-  "description": "A real-time chat application using WebSocket",
+  "description": "A real-time chat application using Supabase",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "ws": "^7.4.6"
+    "express": "^4.17.1"
   }
 }
