@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: realtime-chat-supabase-react
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: SUPABASE_URL
+        value: <your-supabase-url>
+      - key: SUPABASE_KEY
+        value: <your-supabase-key>
