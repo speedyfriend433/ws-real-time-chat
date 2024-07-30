@@ -7,6 +7,6 @@ services:
     startCommand: npm start
     envVars:
       - key: SUPABASE_URL
-        value: <your-supabase-url>
+        value: your-supabase-url
       - key: SUPABASE_KEY
-        value: <your-supabase-key>
+        value: your-supabase-key
