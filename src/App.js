@@ -41,7 +41,7 @@ function App() {
   const handleSendMessage = async () => {
     if (newMessage.trim() === '') return;
 
-    const username = 'User'; // Replace this with dynamic username if needed
+    const username = 'User'; // g
     const content = newMessage;
 
     const { error } = await supabase
